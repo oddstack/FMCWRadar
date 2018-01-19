@@ -21,9 +21,6 @@ cHwPinConfig::MAP cHwPinConfig::table[]
       AD0_6_P0_3,
       AD0_7_P0_2,
 
-      // DAC
-      AOUT_P0_26,
-
       // SPI
       SCK1_P0_7,
       MISO1_P0_8,
@@ -40,26 +37,18 @@ cHwPinConfig::MAP cHwPinConfig::table[]
       // UART
       TXD1_P2_0,
       RXD1_P2_1,
-			
-			// I2C
-			SDA2_P0_10,
-			SCL2_P0_11,
 
       END_OF_TABLE
   };
 
 //- Timer------------------------------------------------------------
-cHwTimer_N  timer   ( cHwTimer_N::TIM_0,  1000/*us*/ );
+cHwTimer_N  timer   ( cHwTimer_N::TIM_0,  90/*us*/ );
 cHwTimer_N  timerPWM( cHwTimer_N::TIM_PWM, 100/*us*/ );
 
 //- Digital Port ----------------------------------------------------
 cHwPort_N   port0( cHwPort_N::P0 );
 cHwPort_N   port1( cHwPort_N::P1 );
 cHwPort_N   port4( cHwPort_N::P4 );
-
-//- Analog Output ---------------------------------------------------
-cHwDAC_0    dac0;
-cHwDAC      &dac = dac0;
 
 //- Analog Input ----------------------------------------------------
 cHwADC_0    adc0( &timer );
@@ -82,11 +71,6 @@ cHwADC      &adc = adc0;
                                      2 );           // actual zoom factor		
 	cDevDisplayChar  disp( dispHw );						
 
-
-	cHwI2Cmaster_N       i2c_N( cHwI2Cmaster_N::I2C_2, 
-                            cHwI2Cmaster::CR_100kHz );
-
-	cHwTouch_STMPE811i2c touch( i2c_N, 0, 320, 240);
 #endif
 
 //- Joystick --------------------------------------------------------
