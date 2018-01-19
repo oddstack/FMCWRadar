@@ -1,0 +1,10 @@
+--cpu Cortex-M3
+".\bin\lpc17xx\startup_lpc17xx.o"
+".\bin\lpc17xx\rtos_asm.o"
+".\bin\lpc17xx\lib.o"
+".\bin\lpc17xx\rtos.o"
+".\bin\lpc17xx\main.o"
+".\bin\lpc17xx\gui.o"
+--ro-base 0x00000000 --entry 0x00000000 --rw-base 0x10000000 --entry Reset_Handler --first __Vectors --strict --summary_stderr --info summarysizes --map --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\Bin\LPC17xx\main.map" -o .\Bin\LPC17xx\main.axf

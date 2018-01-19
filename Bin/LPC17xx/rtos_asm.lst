@@ -1,0 +1,73 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             |.text|, CODE, READONLY
+    2 00000000                 THUMB
+    3 00000000         
+    4 00000000         ;
+    5 00000000         load_context
+                               FUNCTION
+    6 00000000                 EXPORT           load_context
+    7 00000000 F380 8808       MSR              msp, r0     ;
+    8 00000004 F3EF 8008       MRS              r0, msp
+    9 00000008 E8B0 0FF0       LDMFD            r0!, {r4-r11}
+   10 0000000C F380 8808       MSR              msp, r0
+   11 00000010 4770            BX               lr
+   12 00000012                 ENDP
+   13 00000012         
+   14 00000012         ;
+   15 00000012         save_context
+                               FUNCTION
+   16 00000012                 EXPORT           save_context
+   17 00000012 F3EF 8008       MRS              r0, msp
+   18 00000016 E920 0FF0       STMDB            r0!, {r4-r11}
+   19 0000001A F380 8808       MSR              msp, r0
+   20 0000001E 4770            BX               lr
+   21 00000020                 ENDP
+   22 00000020         
+   23 00000020                 END
+Command Line: --debug --xref --cpu=Cortex-M3 --apcs=interwork --depend=.\bin\lp
+c17xx\rtos_asm.d -o.\bin\lpc17xx\rtos_asm.o -IC:\Keil\ARM\RV31\INC -IC:\Keil\AR
+M\CMSIS\Include -IC:\Keil\ARM\Inc\NXP\LPC17xx --predefine="__EVAL SETA 1" --lis
+t=.\bin\lpc17xx\rtos_asm.lst ..\EmbSysLib\Lib\Src\Hardware\MCU\LPC17xx\Sys\Keil
+\RTOS_Asm.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+.text 00000000
+
+Symbol: .text
+   Definitions
+      At line 1 in file ..\EmbSysLib\Lib\Src\Hardware\MCU\LPC17xx\Sys\Keil\RTOS
+_Asm.s
+   Uses
+      None
+Comment: .text unused
+load_context 00000000
+
+Symbol: load_context
+   Definitions
+      At line 5 in file ..\EmbSysLib\Lib\Src\Hardware\MCU\LPC17xx\Sys\Keil\RTOS
+_Asm.s
+   Uses
+      At line 6 in file ..\EmbSysLib\Lib\Src\Hardware\MCU\LPC17xx\Sys\Keil\RTOS
+_Asm.s
+Comment: load_context used once
+save_context 00000012
+
+Symbol: save_context
+   Definitions
+      At line 15 in file ..\EmbSysLib\Lib\Src\Hardware\MCU\LPC17xx\Sys\Keil\RTO
+S_Asm.s
+   Uses
+      At line 16 in file ..\EmbSysLib\Lib\Src\Hardware\MCU\LPC17xx\Sys\Keil\RTO
+S_Asm.s
+Comment: save_context used once
+3 symbols
+334 symbols in table
