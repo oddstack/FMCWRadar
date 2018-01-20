@@ -42,7 +42,7 @@ cHwPinConfig::MAP cHwPinConfig::table[]
   };
 
 //- Timer------------------------------------------------------------
-cHwTimer_N  timer   ( cHwTimer_N::TIM_0,  90/*us*/ );
+cHwTimer_N  timer   ( cHwTimer_N::TIM_0,  2000/*us*/ );
 cHwTimer_N  timerPWM( cHwTimer_N::TIM_PWM, 100/*us*/ );
 
 //- Digital Port ----------------------------------------------------
