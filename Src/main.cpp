@@ -226,10 +226,9 @@ int main(void)
 				data[i] = handler.buffer[i];
 			}
 			
-			/*
-			for (int i = 0; i < BUFFER; i++)
+			/*for (int i = 0; i < BUFFER; i++)
 			{
-				displayValue(data[i], 0, !(cnter2%3), 0);
+				displayValue(data[i], 0, 0, 0);
 			}*/
 			
 			handler.dirty = false;
@@ -238,6 +237,7 @@ int main(void)
 			FFT(1, M, data, out);
 			
 			float max = 0;
+			float min = 10000;
 			int mI = 0;
 			for (int i = 1; i < M*2; i++)
 			{
@@ -247,17 +247,25 @@ int main(void)
 					max = m; 
 					mI = i;
 				}
+				if (m < min) min = m;
 				//for (int j = 0; j < 10; j++) displayValue(m*10.0f, 0, !(cnter2%3), 1);
 			}
 			
 			float f = (mI-0.5f) * (SAMPLE/BUFFER);
 			float v = M_C/2.0 * (f / FREQ);
-			GUI::drawString(Rect(0, 0, 100, 30), BLACK, WHITE, "%f", f);
-			GUI::drawString(Rect(0, 30, 100, 30), BLACK, WHITE, "%f", v);
+			
+			if (abs(min-max) < 10) 
+			{
+				f = 0;
+				v = 0;
+			}
+			
+			displayValue(v * 2000.0f, 0, 0, 1);
+			//GUI::drawString(Rect(0, 0, 100, 30), BLACK, WHITE, "%f", f);
+			//GUI::drawString(Rect(0, 30, 100, 30), BLACK, WHITE, "%f", v);
 			
 			finc += 0.05f;
 			cnter2++;
-			currentValueX += 240/10;
 			
 			//displayValue(t * 100.0f, 0, 0);
 			
